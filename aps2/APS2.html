@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="Content-Script-Type" content="text/javascript">
+	<script type="text/javascript">
+		// um simples código de apoio para reconhecer identificadores
+		function validaIdentificador() {
+			var entrada = document.getElementById('codigo_fonte').value;
+			var regex = /^[a-z]\w*$/;
+			var identificador = regex.exec(entrada);
+			if (!identificador)
+				window.alert(entrada + " Não é IDENT");
+			else
+				window.alert("IDENT: " + entrada);
+		}
+	</script>
+</head>
+
+<body>
+	<form action="#">
+		<p>
+		<h2>Aqui você entra com o código fonte </h2>
+		<hr>
+		<textarea id="codigo_fonte" cols="100" rows="10"></textarea>
+		</p>
+		<button onclick="javascript:validaIdentificador()">Aplicar Analisador Léxico</button>
+	</form>
+
+	<hr>
+	<h1>APS 2</h2>
+		<hr>
+		<h2>Implemente um analisador léxico que reconhece os seguintes Tokens </h2>
+		<hr>
+		<div align="center">
+			<img src="aps2.png" width="90%">
+			<hr>
+			<img src="aps22.png" width="60%" align="center">
+		</div>
+
+		<div>
+			<h2>Observação 1: Para facilitar a vida, os tokens são separados entre si por espaço, uma função javascript
+				que ajuda bastante é o split().</h2>
+			<h2>Observação 2: Ao invés de exibir o resultado em um alert(), exiba em uma tabela.</h2>
+			<h2>Observação 3: Caso deseje, pode melhorar a página (css, frameworks, etc) usando recursos de layout que
+				você aprendeu em outras disciplinas.</h2>
+		</div>
+
+</body>
+
+</html>
