@@ -4,18 +4,6 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<meta http-equiv="Content-Script-Type" content="text/javascript">
-	<script type="text/javascript">
-		// um simples código de apoio para reconhecer identificadores
-		function validaIdentificador() {
-			var entrada = document.getElementById('codigo_fonte').value;
-			var regex = /^[a-z]\w*$/;
-			var identificador = regex.exec(entrada);
-			if (!identificador)
-				window.alert(entrada + " Não é IDENT");
-			else
-				window.alert("IDENT: " + entrada);
-		}
-	</script>
 </head>
 
 <body>
@@ -48,5 +36,17 @@
 		</div>
 
 </body>
+<script type="text/javascript">
+	// um simples código de apoio para reconhecer identificadores
+	function validaIdentificador() {
+		const entrada = document.getElementById('codigo_fonte').value;
+		const regex = /^[a-z]\w*$/;
+		const identificador = regex.exec(entrada);
+		if (!identificador)
+			window.alert(entrada + " Não é IDENT");
+		else
+			window.alert("IDENT: " + entrada);
+	}
+</script>
 
 </html>
