@@ -1,3 +1,9 @@
+function limparTabela(){
+    const div = document.getElementById('tabelaId');
+
+    div.remove();
+}
+
 function criarTabela(obj) {
     const div = document.getElementById('tabela')
 
@@ -10,7 +16,7 @@ function criarTabela(obj) {
   </tr>`
     }).join('')
 
-    const table = `<table  class="table">
+    const table = `<table class="table" id="tabelaId" >
   <tr>
     <td>Token</td>
     <td>Codigo</td>
