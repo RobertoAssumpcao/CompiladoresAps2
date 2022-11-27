@@ -36,6 +36,10 @@ function validaIdentificador() {
         {
             token: "Relacionais",
             regex: /^==$|^!=$|^>$|^<$/
+        },
+        {
+            token: "String",
+            regex: /"(“ [^ ”] *” | '[^'] * '| [^' ”>])*"/
         }
     ];
 
@@ -96,6 +100,18 @@ function validaIdentificador() {
         }
         else {
             codigoAnalisado.push(new ObjCodigoAnalisado(objRegex[4].token, codigoEmAnalise[i]));
+        }
+    }
+
+    // String
+    identificador = []
+    for (i = 0; i < codigoEmAnalise.length; i++) {
+        identificador.push(objRegex[5].regex.exec(codigoEmAnalise[i]));
+        if (identificador[i] == null) {
+            continue;
+        }
+        else {
+            codigoAnalisado.push(new ObjCodigoAnalisado(objRegex[5].token, codigoEmAnalise[i]));
         }
     }
 }
