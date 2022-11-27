@@ -1,3 +1,26 @@
+function criarTabela(obj) {
+    const div = document.getElementById('tabela')
+
+    const codigoAnalisadoTabela = obj
+
+    const tableBody = codigoAnalisadoTabela.map((codigoAnalisadoTabela) => {
+        return `<tr>
+    <td>${codigoAnalisadoTabela.token}</td>
+    <td>${codigoAnalisadoTabela.codigo}</td>
+  </tr>`
+    }).join('')
+
+    const table = `<table>
+  <tr>
+    <td>Token</td>
+    <td>codigo</td>
+  </tr>
+  ${tableBody}
+</table>`;
+
+    div.insertAdjacentHTML('beforeend', table)
+}
+
 function ObjCodigoAnalisado(token, codigo) {
     this.token = token;
     this.codigo = codigo;
@@ -114,4 +137,6 @@ function validaIdentificador() {
             codigoAnalisado.push(new ObjCodigoAnalisado(objRegex[5].token, codigoEmAnalise[i]));
         }
     }
+
+    criarTabela(codigoAnalisado);
 }
