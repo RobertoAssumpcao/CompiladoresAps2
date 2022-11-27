@@ -10,10 +10,10 @@ function criarTabela(obj) {
   </tr>`
     }).join('')
 
-    const table = `<table>
+    const table = `<table  class="table">
   <tr>
     <td>Token</td>
-    <td>codigo</td>
+    <td>Codigo</td>
   </tr>
   ${tableBody}
 </table>`;
