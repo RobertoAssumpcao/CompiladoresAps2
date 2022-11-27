@@ -5,84 +5,82 @@ function ObjCodigoAnalisado(token, codigo) {
 
 function separadorCodigo() {
     let entrada = document.getElementById('codigo_fonte').value;
+    // Como o HTML coloca um \n sempre que quebro linha, usei ele no lugar do ;
+    // Poderia substituir o \n por ; mas só daria mais trabalho, pq eu teria que fazer mais um split
+    // Então consideirei o \n como ;.
     entrada = entrada.split("\n").join(" ").split(" ");
     return entrada;
 }
 
 function validaIdentificador() {
-    const codigoEmAnalise = separadorCodigo();
-    const regex = [/^[a-z]\w*$/,,, /^[1-9]\w*$/];
     let identificador = [];
     let codigoAnalisado = [];
+    const codigoEmAnalise = separadorCodigo();
+    const objRegex = [
+        {
+            token: "Identificador",
+            regex: /^[a-z]\w*$/
+        },
+        {
+            token: "Numero Inteiro",
+            regex: /^([0-9]*(e-?[0-9]*)?)?$/g
+        },
+        {
+            token: "Numero Real",
+            regex: /([1-9][0-9]*[eE][1-9][0-9]*|(([1-9][0-9]*\,)|(\,[0-9]+))([0-9]*)?([eE][\-\+]?[1-9][0-9]*)?)/mg
+        },
+        {
+            token: "",
+            regex: 
+        }
+    ];
 
     // Identificador
     for (i = 0; i < codigoEmAnalise.length; i++) {
-        identificador.push(regex[0].exec(codigoEmAnalise[i]));
+        identificador.push(objRegex[0].regex.exec(codigoEmAnalise[i]));
         if (identificador[i] == null) {
             continue;
         }
         else {
-            codigoAnalisado.push(new ObjCodigoAnalisado("Identificador", codigoEmAnalise[i]));
+            codigoAnalisado.push(new ObjCodigoAnalisado(objRegex[0].token, codigoEmAnalise[i]));
         }
+
     }
-    
-    identificador = [];
-    // Atribuição // teste 1 a 9
+
+    // Numeros Inteiros
+    identificador = []
     for (i = 0; i < codigoEmAnalise.length; i++) {
-        identificador.push(regex[1].exec(codigoEmAnalise[i]));
+        identificador.push(objRegex[1].regex.exec(codigoEmAnalise[i]));
         if (identificador[i] == null) {
             continue;
         }
         else {
-            codigoAnalisado.push(new ObjCodigoAnalisado("Atribuição", codigoEmAnalise[i]));
+            codigoAnalisado.push(new ObjCodigoAnalisado(objRegex[1].token, codigoEmAnalise[i]));
         }
     }
 
-    identificador = [];
-    //Relacionais
+    // Numero real
+    identificador = []
     for (i = 0; i < codigoEmAnalise.length; i++) {
-        identificador.push(regex[2].exec(codigoEmAnalise[i]));
+        identificador.push(objRegex[2].regex.exec(codigoEmAnalise[i]));
         if (identificador[i] == null) {
             continue;
         }
         else {
-            codigoAnalisado.push(new ObjCodigoAnalisado("Relacionais", codigoEmAnalise[i]));
+            codigoAnalisado.push(new ObjCodigoAnalisado(objRegex[2].token, codigoEmAnalise[i]));
         }
     }
 
-    identificador = [];
-    //Inteiro
+    // 
+    identificador = []
     for (i = 0; i < codigoEmAnalise.length; i++) {
-        identificador.push(regex[3].exec(codigoEmAnalise[i]));
+        identificador.push(objRegex[3].regex.exec(codigoEmAnalise[i]));
         if (identificador[i] == null) {
             continue;
         }
         else {
-            codigoAnalisado.push(new ObjCodigoAnalisado("Inteiro", codigoEmAnalise[i]));
+            codigoAnalisado.push(new ObjCodigoAnalisado(objRegex[3].token, codigoEmAnalise[i]));
         }
     }
 
-    identificador = [];
-    //Numeros reais
-    for (i = 0; i < codigoEmAnalise.length; i++) {
-        identificador.push(regex[4].exec(codigoEmAnalise[i]));
-        if (identificador[i] == null) {
-            continue;
-        }
-        else {
-            codigoAnalisado.push(new ObjCodigoAnalisado("Numeros reais", codigoEmAnalise[i]));
-        }
-    }
-
-    identificador = [];
-    //String
-    for (i = 0; i < codigoEmAnalise.length; i++) {
-        identificador.push(regex[5].exec(codigoEmAnalise[i]));
-        if (identificador[i] == null) {
-            continue;
-        }
-        else {
-            codigoAnalisado.push(new ObjCodigoAnalisado("String", codigoEmAnalise[i]));
-        }
-    }
 }
