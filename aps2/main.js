@@ -23,15 +23,19 @@ function validaIdentificador() {
         },
         {
             token: "Numero Inteiro",
-            regex: /^([0-9]*(e-?[0-9]*)?)?$/g
+            regex: /^([0-9]*(e-?[0-9]*)?)?$/
         },
         {
             token: "Numero Real",
-            regex: /([1-9][0-9]*[eE][1-9][0-9]*|(([1-9][0-9]*\,)|(\,[0-9]+))([0-9]*)?([eE][\-\+]?[1-9][0-9]*)?)/mg
+            regex: /([1-9][0-9]*[eE][1-9][0-9]*|(([1-9][0-9]*\,)|(\,[0-9]+))([0-9]*)?([eE][\-\+]?[1-9][0-9]*)?)/m
         },
         {
-            token: "",
-            regex: 
+            token: "Atribuição",
+            regex: /^=$/
+        },
+        {
+            token: "Relacionais",
+            regex: /^==$|^!=$|^>$|^<$/
         }
     ];
 
@@ -71,7 +75,7 @@ function validaIdentificador() {
         }
     }
 
-    // 
+    // Atribuição
     identificador = []
     for (i = 0; i < codigoEmAnalise.length; i++) {
         identificador.push(objRegex[3].regex.exec(codigoEmAnalise[i]));
@@ -83,4 +87,15 @@ function validaIdentificador() {
         }
     }
 
+    // Relacionais
+    identificador = []
+    for (i = 0; i < codigoEmAnalise.length; i++) {
+        identificador.push(objRegex[4].regex.exec(codigoEmAnalise[i]));
+        if (identificador[i] == null) {
+            continue;
+        }
+        else {
+            codigoAnalisado.push(new ObjCodigoAnalisado(objRegex[4].token, codigoEmAnalise[i]));
+        }
+    }
 }
