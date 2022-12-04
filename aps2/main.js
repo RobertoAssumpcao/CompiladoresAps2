@@ -63,18 +63,15 @@ function validaIdentificador() {
         },
         {
             token: "Atribuição",
-			// removi o sinal de atribuição <= na expressão. E resolvi um problema que acabou surgindo após essa adição, um certo conflito léxico com a tabela de símbolos relacionais.
             regex: /^=$/
         },
         {
             token: "Relacionais",
-			// Limitei a ocorrência do = para somente 2 vezes, e simplifiquei a expressão.
             regex: /^={2}$|^!={1}$|^>{1}$|^<{1}$/
         },
         {
             token: "String",
-			// Coloquei apenas o básico, aceitando toda linguagem gerada pelas letras do alfabeto. Porém, não aceita nenhum tipo de pontuação. (Devemos adicionar pra ter mais qualidade de vida?)
-            regex: /^\"[ A-Za-z]*\"$/
+            regex: /^\"\w*\"$/
         }
     ];
 
