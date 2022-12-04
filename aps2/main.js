@@ -48,27 +48,33 @@ function validaIdentificador() {
     const objRegex = [
         {
             token: "Identificador",
+			// Não fiz nenhuma alteração na expressão abaixo.
             regex: /^[a-z]\w*$/
         },
         {
             token: "Numero Inteiro",
-            regex: /^([0-9]*(e-?[0-9]*)?)?$/
+			// \d = [0-9] + = uma ou N vezes
+            regex: /^\d+$/
         },
         {
             token: "Numero Real",
-            regex: /([1-9][0-9]*[eE][1-9][0-9]*|(([1-9][0-9]*\,)|(\,[0-9]+))([0-9]*)?([eE][\-\+]?[1-9][0-9]*)?)/m
+			// No exemplo do professor utiliza-se apenas uma casa decimal, porém aqui coloquei para aceitar de uma OU duas casas decimais.
+            regex: /^\d+,\d{1,2}$/
         },
         {
             token: "Atribuição",
-            regex: /^=$/
+			// Adicionei o sinal de atribuição <= na expressão. E resolvi um problema que acabou surgindo após essa adição, um certo conflito léxico com a tabela de símbolos relacionais.
+            regex: /^=$|^<=$/
         },
         {
             token: "Relacionais",
-            regex: /^==$|^!=$|^>$|^<$/
+			// Limitei a ocorrência do = para somente 2 vezes, e simplifiquei a expressão.
+            regex: /^={2}$|^!={1}$|^>{1}$|^<{1}$/
         },
         {
             token: "String",
-            regex: /"(“ [^ ”] *” | '[^'] * '| [^' ”>])*"/
+			// Coloquei apenas o básico, aceitando toda linguagem gerada pelas letras do alfabeto. Porém, não aceita nenhum tipo de pontuação. (Devemos adicionar pra ter mais qualidade de vida?)
+            regex: /^\"[ A-Za-z]*\"$/
         }
     ];
 
