@@ -63,8 +63,8 @@ function validaIdentificador() {
         },
         {
             token: "Atribuição",
-			// Adicionei o sinal de atribuição <= na expressão. E resolvi um problema que acabou surgindo após essa adição, um certo conflito léxico com a tabela de símbolos relacionais.
-            regex: /^=$|^<=$/
+			// removi o sinal de atribuição <= na expressão. E resolvi um problema que acabou surgindo após essa adição, um certo conflito léxico com a tabela de símbolos relacionais.
+            regex: /^=$/
         },
         {
             token: "Relacionais",
