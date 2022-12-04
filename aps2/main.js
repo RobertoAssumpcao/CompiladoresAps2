@@ -1,4 +1,10 @@
-function limparTabela(){
+function limparCodigo() {
+    const codigo = document.getElementById('codigo_fonte');
+
+    codigo.value = '';
+}
+
+function limparTabela() {
     const div = document.getElementById('tabelaId');
 
     div.remove();
@@ -48,17 +54,17 @@ function validaIdentificador() {
     const objRegex = [
         {
             token: "Identificador",
-			// Não fiz nenhuma alteração na expressão abaixo.
+            // Não fiz nenhuma alteração na expressão abaixo.
             regex: /^[a-z]\w*$/
         },
         {
             token: "Numero Inteiro",
-			// \d = [0-9] + = uma ou N vezes
+            // \d = [0-9] + = uma ou N vezes
             regex: /^\d+$/
         },
         {
             token: "Numero Real",
-			// No exemplo do professor utiliza-se apenas uma casa decimal, porém aqui coloquei para aceitar de uma OU duas casas decimais.
+            // No exemplo do professor utiliza-se apenas uma casa decimal, porém aqui coloquei para aceitar de uma OU duas casas decimais.
             regex: /^\d+,\d{1,2}$/
         },
         {
