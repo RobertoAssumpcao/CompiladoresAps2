@@ -43,7 +43,7 @@ function separadorCodigo() {
     // Como o HTML coloca um \n sempre que quebro linha, usei ele no lugar do ;
     // Poderia substituir o \n por ; mas só daria mais trabalho, pq eu teria que fazer mais um split
     // Então consideirei o \n como ;.
-    entrada = entrada.split("\n").join(" ").split(" ");
+    entrada = entrada.split("\n").join(" ").split(/("[^"]*"|'[^']*'|[\S]+)+/);
     return entrada;
 }
 
