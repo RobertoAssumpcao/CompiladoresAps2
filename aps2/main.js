@@ -54,17 +54,14 @@ function validaIdentificador() {
     const objRegex = [
         {
             token: "Identificador",
-            // Não fiz nenhuma alteração na expressão abaixo.
             regex: /^[a-z]\w*$/
         },
         {
             token: "Numero Inteiro",
-            // \d = [0-9] + = uma ou N vezes
             regex: /^\d+$/
         },
         {
             token: "Numero Real",
-            // No exemplo do professor utiliza-se apenas uma casa decimal, porém aqui coloquei para aceitar de uma OU duas casas decimais.
             regex: /^\d+,\d{1,2}$/
         },
         {
@@ -77,7 +74,9 @@ function validaIdentificador() {
         },
         {
             token: "String",
-            regex: /^\"\w*\"$/
+			// A expressão está feia mas em tese aceita toda a cadeida de caracteres desejados. Fiz um uso excessivo de escapes '\' pois não tinha certeza
+			// de quais caracteres são reservados da linguagem Regex
+            regex: /^"[A-Za-z0-9\!\@\#\$\%\&\*\?\:\;\.\,\>\<\\\/\'\¨\(\)\_\+\`\´\{\}\[\]\^äöüÄÖÜÁáÀàÃãÉéÊêÍíÓóÔôÚúçÇËë= ]*"$/
         }
     ];
 
